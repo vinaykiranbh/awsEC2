@@ -15,9 +15,9 @@ To use the same keypair for all regions. You below commands.
 
 1. ssh-keygen -y -f keypair.pem > keypair.pub
 
-Replace keypair.pem with your file name. If it is kimhay.pem then command will be 
+Replace keypair.pem with your file name. If it is *.pem then command will be 
 
-ssh-keygen -y -f kimhay.pem > kimhay.pub
+ssh-keygen -y -f *.pem > *.pub
 
 
 2. AWS_REGIONS='$(aws ec2 describe-regions --query 'Regions[].RegionName' --output text)'
@@ -29,14 +29,14 @@ This command will get all the regions from cli and save it to AWS_REGIONS
 This command is used to activate shell looping 
 
 
-4. for each_region in ${AWS_REGIONS} ; do aws ec2 import-key-pair --key-name NewKeyName --public-key-material fileb://kimhay.pub --region $each_region ; done
+4. for each_region in ${AWS_REGIONS} ; do aws ec2 import-key-pair --key-name NewKeyName --public-key-material fileb://*.pub --region $each_region ; done
 
 
 
 Replace: 
 
 i) NewKeyName with the keyname u want to set in AWS 
-ii) File://kimhay.pub 
+ii) File://*.pub 
 
 
 Above 4 commands, will import key pairs to all the regions. 
